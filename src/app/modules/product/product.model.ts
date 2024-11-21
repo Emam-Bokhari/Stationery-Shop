@@ -36,14 +36,8 @@ const productSchema = new Schema({
         type: Boolean,
         default: false,
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-    }
 },
     { timestamps: true, }
 )
+
+export const Product = mongoose.model("Product", productSchema)
