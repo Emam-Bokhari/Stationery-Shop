@@ -1,11 +1,12 @@
 import { z } from "zod";
+import { TProductCategory } from "./product.interface";
 
 const ProductCategoryEnum = z.enum([
-    "Writing",
-    "Office Supplies",
-    "Art Supplies",
-    "Educational",
-    "Technology",
+    TProductCategory.Writing,
+    TProductCategory.OfficeSupplies,
+    TProductCategory.ArtSupplies,
+    TProductCategory.Educational,
+    TProductCategory.Technology,
 ])
 
 const ProductValidationSchema = z.object({
@@ -16,7 +17,7 @@ const ProductValidationSchema = z.object({
         .trim()
         .min(1, "Brand name is required"),
     price: z.number()
-        .min(0, "Price must be a positive number"),
+        .min(0, "Price is Required").positive({ message: "Price must be a positive number" }),
     category: ProductCategoryEnum,
     description: z.string()
         .trim()

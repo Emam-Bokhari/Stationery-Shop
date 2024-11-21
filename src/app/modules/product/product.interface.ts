@@ -1,4 +1,4 @@
-export enum ProductCategory {
+export enum TProductCategory {
     Writing = "Writing",
     OfficeSupplies = "Office Supplies",
     ArtSupplies = "Art Supplies",
@@ -6,11 +6,11 @@ export enum ProductCategory {
     Technology = "Technology",
 }
 
-export type Product = {
+export type TProduct = {
     name: string;
     brand: string;
     price: number;
-    category: ProductCategory;
+    category: TProductCategory;
     description: string;
     quantity: number;
     inStock: boolean;

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { ProductCategory } from "./product.interface";
+import { TProductCategory } from "./product.interface";
 const { Schema } = mongoose;
 
 const productSchema = new Schema({
@@ -17,7 +17,7 @@ const productSchema = new Schema({
     },
     category: {
         type: String,
-        enum: Object.values(ProductCategory),
+        enum: Object.values(TProductCategory),
         required: true,
     },
     description: {
@@ -31,6 +31,7 @@ const productSchema = new Schema({
     inStock: {
         type: Boolean,
         required: true,
+        default: true,
     },
     isDeleted: {
         type: Boolean,
