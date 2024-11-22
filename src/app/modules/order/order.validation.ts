@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { z } from 'zod';
 
 const orderValidationSchema = z.object({
@@ -6,7 +7,9 @@ const orderValidationSchema = z.object({
     .trim()
     .min(1, 'Email is required')
     .email({ message: 'Invalid email type' }),
-  product: z.string().trim().min(1, 'Product id is required'),
+  product: z.string().refine((value) => mongoose.Types.ObjectId.isValid(value), {
+    message: "Invalid product ID",
+  }),
   quantity: z
     .number()
     .positive('Quantity must be a positive number')

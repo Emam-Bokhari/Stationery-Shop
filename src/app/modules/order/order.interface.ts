@@ -1,6 +1,8 @@
-export type Order = {
-  email: string;
-  product: string;
-  quantity: number;
-  totalPrice: number;
-};
+import mongoose from "mongoose";
+
+export type TOrder = {
+    email: string;
+    product: mongoose.Types.ObjectId;
+    quantity: number;
+    totalPrice: number;
+}

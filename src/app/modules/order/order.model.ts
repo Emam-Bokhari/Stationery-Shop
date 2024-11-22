@@ -8,7 +8,7 @@ const orderSchema = new Schema(
       required: true,
     },
     product: {
-      type: String,
+      type: Schema.Types.ObjectId,
       required: true,
     },
     quantity: {
@@ -24,5 +24,7 @@ const orderSchema = new Schema(
     timestamps: true,
   },
 );
+
+// 
 
 export const Order = mongoose.model('Order', orderSchema);
