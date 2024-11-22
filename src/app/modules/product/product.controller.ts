@@ -93,8 +93,34 @@ const getSingleProduct = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
+const updateProduct = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const productId = req.params.productId;
+    const updatedData = req.body;
+    const result = await ProductServices.updateProductInDB(
+      productId,
+      updatedData,
+    );
+
+    // success response
+    res.status(200).json({
+      message: 'Product updated successfully',
+      status: true,
+      data: result,
+    });
+  } catch (err) {
+    // general error response
+    res.status(500).json({
+      message: err.message || 'Internal server error',
+      status: false,
+      error: err,
+    });
+  }
+};
+
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getSingleProduct,
+  updateProduct,
 };
