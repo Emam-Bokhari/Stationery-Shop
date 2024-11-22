@@ -3,67 +3,68 @@ import { TOrder } from './order.interface';
 import { Order } from './order.model';
 
 const createOrderIntoDB = async (orderData: TOrder) => {
-    const { product, quantity } = orderData;
+  const { product, quantity } = orderData;
 
-    const foundProduct = await Product.findById(product);
+  const foundProduct = await Product.findById(product);
 
-    if (!foundProduct) {
-        throw new Error('Product not found');
-    }
+  if (!foundProduct) {
+    throw new Error('Product not found');
+  }
 
-    if (foundProduct.quantity < quantity) {
-        throw new Error('Insufficient stock available');
-    }
+  if (foundProduct.quantity < quantity) {
+    throw new Error('Insufficient stock available');
+  }
 
-    await Product.findByIdAndUpdate(
-        product,
-        {
-            $inc: { quantity: -quantity },
-            $set: { inStock: foundProduct.quantity - quantity > 0 },
-        },
-        { new: true },
-    );
+  await Product.findByIdAndUpdate(
+    product,
+    {
+      $inc: { quantity: -quantity },
+      $set: { inStock: foundProduct.quantity - quantity > 0 },
+    },
+    { new: true },
+  );
+  const totalPrice = foundProduct.price * quantity;
+  const updatedData = { ...orderData, totalPrice };
 
-    const result = await Order.create(orderData);
-    return result;
+  const result = await Order.create(updatedData);
+  return result;
 };
 
-// Calculate Revenue function
 const calculateRevenueFromDB = async () => {
-
-    const revenueData = await Order.aggregate([
-
-        {
-            $lookup: {
-                from: "products",
-                localField: "product",
-                foreignField: "_id",
-                as: "productDetails"
-            }
+  const revenueData = await Order.aggregate([
+    //stage:1
+    {
+      $lookup: {
+        from: 'products',
+        localField: 'product',
+        foreignField: '_id',
+        as: 'productDetails',
+      },
+    },
+    // stage:2
+    { $unwind: '$productDetails' },
+    //stage:3
+    {
+      $group: {
+        _id: null,
+        totalRevenue: {
+          $sum: { $multiply: ['$quantity', '$productDetails.price'] },
         },
+      },
+    },
+    //stage:4
+    {
+      $project: {
+        _id: 0,
+        totalRevenue: 1,
+      },
+    },
+  ]);
 
-        { $unwind: "$productDetails" },
-        {
-            $group: {
-                _id: null,
-                totalRevenue: { $sum: { $multiply: ["$quantity", "$productDetails.price"] } }
-            }
-        },
-
-        {
-            $project: {
-                _id: 0,
-                totalRevenue: 1,
-            },
-        },
-    ]);
-
-
-    return revenueData
-
+  return revenueData;
 };
 
 export const OrderServices = {
-    createOrderIntoDB,
-    calculateRevenueFromDB,
+  createOrderIntoDB,
+  calculateRevenueFromDB,
 };

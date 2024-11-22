@@ -7,9 +7,11 @@ const orderValidationSchema = z.object({
     .trim()
     .min(1, 'Email is required')
     .email({ message: 'Invalid email type' }),
-  product: z.string().refine((value) => mongoose.Types.ObjectId.isValid(value), {
-    message: "Invalid product ID",
-  }),
+  product: z
+    .string()
+    .refine((value) => mongoose.Types.ObjectId.isValid(value), {
+      message: 'Invalid product ID',
+    }),
   quantity: z
     .number()
     .positive('Quantity must be a positive number')
