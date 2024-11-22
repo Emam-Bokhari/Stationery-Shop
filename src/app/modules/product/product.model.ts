@@ -42,4 +42,18 @@ const productSchema = new Schema(
   { timestamps: true },
 );
 
+// query middleware
+productSchema.pre('find', function () {
+  this.find({ isDeleted: { $ne: true } });
+});
+
+productSchema.pre('findOne', function () {
+  this.findOne({ isDeleted: { $ne: true } });
+});
+
+// aggregate middleware
+productSchema.pre('aggregate', function () {
+  this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+});
+
 export const Product = mongoose.model('Product', productSchema);

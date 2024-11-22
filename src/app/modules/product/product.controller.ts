@@ -114,6 +114,29 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
       message: err.message || 'Internal server error',
       status: false,
       error: err,
+      stack: config.node_env === 'development' ? err.stack : undefined,
+    });
+  }
+};
+
+const deleteProduct = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const productId = req.params.productId;
+
+    const result = await ProductServices.deleteProductFromDB(productId);
+
+    // success response
+    res.status(200).json({
+      message: 'Product deleted successfully',
+      status: true,
+      data: result,
+    });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message || 'Internal server error',
+      status: false,
+      error: err,
+      stack: config.node_env === 'development' ? err.stack : undefined,
     });
   }
 };
@@ -123,4 +146,5 @@ export const ProductControllers = {
   getAllProducts,
   getSingleProduct,
   updateProduct,
+  deleteProduct,
 };
