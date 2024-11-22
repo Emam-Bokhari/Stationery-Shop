@@ -7,19 +7,27 @@ const createProductIntoDB = async (productData: TProduct) => {
 };
 
 const getAllProductsFromDB = async (searchTerm?: string) => {
-  const filter = searchTerm ? {
-    $or: [
-      { name: { $regex: searchTerm, $options: "i" } },
-      { brand: { $regex: searchTerm, $options: "i" } },
-      { category: { $regex: searchTerm, $options: "i" } }
-    ]
-  } : {}
+  const filter = searchTerm
+    ? {
+        $or: [
+          { name: { $regex: searchTerm, $options: 'i' } },
+          { brand: { $regex: searchTerm, $options: 'i' } },
+          { category: { $regex: searchTerm, $options: 'i' } },
+        ],
+      }
+    : {};
 
   const result = await Product.find(filter);
   return result;
-}
+};
+
+const getSingleProductFromDB = async (productId: string) => {
+  const result = await Product.findOne({ _id: productId });
+  return result;
+};
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromDB,
+  getSingleProductFromDB,
 };
