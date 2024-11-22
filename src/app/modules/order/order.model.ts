@@ -1,23 +1,28 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const orderSchema = new Schema({
+const orderSchema = new Schema(
+  {
     email: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     product: {
-        type: String,
-        required: true,
+      type: String,
+      required: true,
     },
     quantity: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     totalPrice: {
-        type: Number,
-        rquired: true,
-    }
-})
+      type: Number,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
 
-export const Order = mongoose.model("Order", orderSchema)
+export const Order = mongoose.model('Order', orderSchema);
