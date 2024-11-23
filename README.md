@@ -1,6 +1,6 @@
-# Project Name
+# Stationery Shop
 
-Welcome to the **Stationery Shop** repository! This document provides an overview of the project, setup instructions.
+Welcome to the **Stationery Shop** repository! This document provides an overview of the project, and setup instructions.
 
 ## Table of Contents
 
@@ -114,3 +114,15 @@ DATABASE_URL=mongodb+srv://stationery-shop:k9CEPeB3t3soFJRb@cluster0.kndeci6.mon
 ├── .tsconfig.json
 └── .vercel.json
 ```
+
+### System Design
+
+Each module is feature-specific, containing:
+
+1. **Controllers:** Route handlers for each feature.
+
+2. **Routes:** Endpoints grouped by feature.
+
+3. **Services:** Business logic.
+
+4. **Validations:** Input validation using libraries Zod .
