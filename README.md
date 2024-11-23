@@ -79,39 +79,39 @@ DATABASE_URL=mongodb+srv://stationery-shop:k9CEPeB3t3soFJRb@cluster0.kndeci6.mon
 ### Folder Structure
 
 ```bash
-├── dist/
+├── dist/                                             # Complied Code
 │   ├── app/
 │   ├── app.js
 │   └── server.js
-├── src/
-│   ├── app/
-│   │   ├── config/
-│   │   └── modules/
-│   │   │   ├── order/
+├── src/                                              # Source code
+│   ├── app/                                          # Main application logic
+│   │   ├── config/                                   # Configurations
+│   │   └── modules/                                  # Modularized application features
+│   │   │   ├── order/                                # Order module
 │   │   │   │   ├── order.controller.ts
 │   │   │   │   ├── order.interface.ts
 │   │   │   │   ├── order.model.ts
 │   │   │   │   ├── order.route.ts
 │   │   │   │   ├── order.service.ts
 │   │   │   │   └── order.validation.ts
-│   │   │   ├── product/
+│   │   │   ├── product/                              # Product module
 │   │   │   │   ├── product.controller.ts
 │   │   │   │   ├── product.interface.ts
 │   │   │   │   ├── product.model.ts
 │   │   │   │   ├── product.route.ts
 │   │   │   │   ├── product.service.ts
 │   │   │   │   └── product.validation.ts
-│   ├── app.ts
-│   └── server.ts
+│   ├── app.ts                                        # Application entry point
+│   └── server.ts                                     # Main server file
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc
-├── .README.md
+├── .README.md                                        # Documentation file
 ├── .eslint.config.mjs
 ├── .package-lock.json
 ├── .package.json
-├── .tsconfig.json
-└── .vercel.json
+├── .tsconfig.json                                    # TypeScript configuration file
+└── .vercel.json                                      # Configuration file for deploying
 ```
 
 ### Application Architecture:
@@ -206,3 +206,14 @@ npm run format
 - `fix`: Resolves bugs.
 - `config`: Updates configurations or settings.
 - `docs`: Updates or adds documentation.
+
+---
+
+## Contact
+
+Any queries, contact with me:
+
+- **Email:** moshfiqurrahman37@gmail.com
+- **Whats App:** [Contact Me on WhatsApp](https://wa.me/+8801315773424)
+
+- **Phone:** +880 131 57-73 424
