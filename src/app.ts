@@ -14,7 +14,7 @@ app.use('/api/products', ProductRoutes);
 app.use('/api/orders', OrderRoutes);
 
 // check server health
-app.get('/health', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Server in running...');
 });
 
