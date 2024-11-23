@@ -52,6 +52,16 @@ const getAllProducts = async (req: Request, res: Response): Promise<void> => {
       searchTerm as string,
     );
 
+    // not found error response
+    if (!result) {
+      res.status(404).json({
+        message: "Product not found",
+        status: false,
+        data: null,
+      })
+      return;
+    }
+
     // success response
     res.status(200).json({
       message: 'Products retrieved successfully',
@@ -74,6 +84,16 @@ const getSingleProduct = async (req: Request, res: Response): Promise<void> => {
     const productId = req.params.productId;
 
     const result = await ProductServices.getSingleProductFromDB(productId);
+
+    // not found error response
+    if (!result) {
+      res.status(404).json({
+        message: "Product not found",
+        status: false,
+        data: null,
+      })
+      return;
+    }
 
     // success response
     res.status(200).json({
@@ -102,6 +122,16 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
       updatedData,
     );
 
+    // not found error response
+    if (!result) {
+      res.status(404).json({
+        message: "Product not fond",
+        status: false,
+        data: null,
+      })
+      return;
+    }
+
     // success response
     res.status(200).json({
       message: 'Product updated successfully',
@@ -124,6 +154,15 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
     const productId = req.params.productId;
 
     const result = await ProductServices.deleteProductFromDB(productId);
+
+    // not found error response
+    if (!result) {
+      res.status(404).json({
+        message: "Product not found",
+        status: false,
+        data: null
+      })
+    }
 
     // success response
     res.status(200).json({
