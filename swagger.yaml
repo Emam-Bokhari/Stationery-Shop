@@ -1,0 +1,172 @@
+openapi: 3.0.0
+info:
+  title: Stationery Shop API
+  description: This API provides endpoints for managing products and orders in a stationery shop e-commerce application. It allows the create, retrieved, update, and delete of products. Create orders and calculate total revenue.
+  version: 1.0.0
+  contact:
+    name: Moshfiqur Rahman
+    email: moshfiqurrahman37@gmail.com
+    url: https://moshfiqur-rahman.vercel.app/
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+servers:
+  - url: https://stationery-shop-weld.vercel.app/
+    description: Production server 
+  - url: http://localhost:3000
+    description: Development server 
+
+tags:
+  - name: product
+    description: Operations related to product. 
+
+paths: 
+  "/api/products":
+    post:
+      tags: 
+        - product
+      summary: Create a Stationery Product
+      requestBody: 
+        description: This endpoint allows to create a new product in the stationery store. 
+        required: true
+        content:
+          "application/json":
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Notebook
+                brand:
+                  type: string
+                  example: Moleskine
+                price:
+                  type: number
+                  format: float
+                  example: 15
+                category:
+                  type: string
+                  enum: 
+                    - Writing
+                    - Office Supplies
+                    - Art Supplies
+                    - Educational
+                    - Technology
+                  example: Office Supplies
+                description:
+                  type: string
+                  example: A high-quality notebook for professionals.
+                quantity:
+                  type: integer
+                  example: 200
+                inStock:
+                  type: boolean
+                  default: true
+                  example: true
+              required: [name,brand,price,category,description,quantity,inStock]
+      responses:
+        "201":
+          description: Success message and created product details.
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Product created successfully
+                  success:
+                    type: string
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "648a45e5f0123c45678d9012"
+                      name:
+                        type: string
+                        example: Notebook
+                      brand: 
+                        type: string
+                        example: Notebook
+                      price:
+                        type: number
+                        format: float
+                        example: 15
+                      category:
+                        type: string
+                        example: Office Supplies
+                      description:
+                        type: string
+                        example: A high-quality notebook for professionals
+                      quantity:
+                        type: integer
+                        example: 200
+                      inStock: 
+                        type: boolean
+                        example: true
+        "400":
+          description: Zod validation error response 
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+                    example: Validation failed
+                  success:
+                    type: boolean
+                    example: false
+                  error:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: ValidationError
+                      errors: 
+                        type: array 
+                        items:
+                          type: object
+                          properties:
+                            code: 
+                              type: string
+                              example: "too_small"
+                            minimum:
+                              type: number
+                              example: 1
+                            type:
+                              type: string
+                              example: number
+                            inclusive:
+                              type: boolean
+                              example: true
+                            exact:
+                              type: boolean
+                              example: false
+                            message: 
+                              type: string
+                              example: Price is required 
+                            path: 
+                              type: array 
+                              items: 
+                                type: string 
+                                example: ["price"]
+        "500":
+          description: General error response
+          content:
+            "application/json":
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Internal server error
+                  success:
+                    type: boolean
+                    example: false
+                  stack:
+                    type: string
+                    example: "Error: Something went wrong\n    at app.js:23:13\n    at..."
