@@ -1,9 +1,12 @@
 import mongoose from 'mongoose';
 import { z } from 'zod';
 
-const objectIdValidation = z.custom<mongoose.Types.ObjectId>((value) => {
-  return mongoose.Types.ObjectId.isValid(value)
-}, { message: "Invalid ObjectId" })
+const objectIdValidation = z.custom<mongoose.Types.ObjectId>(
+  (value) => {
+    return mongoose.Types.ObjectId.isValid(value);
+  },
+  { message: 'Invalid ObjectId' },
+);
 
 const orderValidationSchema = z.object({
   email: z

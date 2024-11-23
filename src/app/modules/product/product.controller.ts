@@ -55,10 +55,10 @@ const getAllProducts = async (req: Request, res: Response): Promise<void> => {
     // not found error response
     if (!result || result.length === 0) {
       res.status(404).json({
-        message: "Product not found",
+        message: 'Product not found',
         status: false,
         data: null,
-      })
+      });
       return;
     }
 
@@ -88,10 +88,10 @@ const getSingleProduct = async (req: Request, res: Response): Promise<void> => {
     // not found error response
     if (!result) {
       res.status(404).json({
-        message: "Product not found",
+        message: 'Product not found',
         status: false,
         data: null,
-      })
+      });
       return;
     }
 
@@ -125,10 +125,10 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
     // not found error response
     if (!result) {
       res.status(404).json({
-        message: "Product not fond",
+        message: 'Product not fond',
         status: false,
         data: null,
-      })
+      });
       return;
     }
 
@@ -158,10 +158,10 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
     // not found error response
     if (result.matchedCount === 0) {
       res.status(404).json({
-        message: "Product not found",
+        message: 'Product not found',
         status: false,
-        data: null
-      })
+        data: null,
+      });
       return;
     }
 

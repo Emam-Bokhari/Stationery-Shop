@@ -8,7 +8,7 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
     const orderData = req.body.order;
 
     // data validation by Zod
-    const zodParsedData = orderValidationSchema.parse(orderData)
+    const zodParsedData = orderValidationSchema.parse(orderData);
 
     const result = await OrderServices.createOrderIntoDB(zodParsedData);
 
@@ -20,16 +20,16 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
     });
   } catch (err: any) {
     // product not found error response
-    if (err.message === "Product not found") {
+    if (err.message === 'Product not found') {
       res.status(404).json({
         message: err.message,
         status: false,
-      })
-    } else if (err.message === "Insufficient stock available") {
+      });
+    } else if (err.message === 'Insufficient stock available') {
       res.status(400).json({
         message: err.message,
         status: false,
-      })
+      });
     } else {
       // general error response
       res.status(500).json({
@@ -47,12 +47,15 @@ const calculateRevenue = async (req: Request, res: Response): Promise<void> => {
     const result = await OrderServices.calculateRevenueFromDB();
 
     // no data found error response
-    if (!result || typeof (result) === "object" && Object.keys(result.length === 0)) {
+    if (
+      !result ||
+      (typeof result === 'object' && Object.keys(result.length === 0))
+    ) {
       res.status(404).json({
-        message: "No revenue data found",
+        message: 'No revenue data found',
         status: false,
-        data: null
-      })
+        data: null,
+      });
       return;
     }
 

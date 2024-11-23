@@ -45,33 +45,32 @@ const productSchema = new Schema(
 // query middleware
 productSchema.pre('find', function (next) {
   this.find({ isDeleted: { $ne: true } });
-  next()
+  next();
 });
 
 productSchema.pre('findOne', function (next) {
   this.findOne({ isDeleted: { $ne: true } });
-  next()
+  next();
 });
 
-productSchema.pre("find", function (next) {
-  this.select("-isDeleted")
-  next()
+productSchema.pre('find', function (next) {
+  this.select('-isDeleted');
+  next();
 });
 
-productSchema.pre("findOne", function (next) {
-  this.select("-isDeleted")
-  next()
-})
+productSchema.pre('findOne', function (next) {
+  this.select('-isDeleted');
+  next();
+});
 
 // aggregate middleware
 productSchema.pre('aggregate', function () {
   this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
 });
 
-productSchema.pre("aggregate", function (next) {
-  this.pipeline().unshift({ $project: { isDeleted: 0 } })
-  next()
-})
-
+productSchema.pre('aggregate', function (next) {
+  this.pipeline().unshift({ $project: { isDeleted: 0 } });
+  next();
+});
 
 export const Product = mongoose.model('Product', productSchema);

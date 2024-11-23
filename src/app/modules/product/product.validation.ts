@@ -19,7 +19,9 @@ const ProductValidationSchema = z.object({
   category: ProductCategoryEnum,
   description: z.string().trim().min(1, 'Description is required'),
   quantity: z.number().min(1, 'Quantity must be a positive number'),
-  inStock: z.boolean().refine((value) => value === true, { message: "inStock must be true" }),
+  inStock: z
+    .boolean()
+    .refine((value) => value === true, { message: 'inStock must be true' }),
   isDeleted: z.boolean().default(false),
 });
 
