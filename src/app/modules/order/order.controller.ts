@@ -1,12 +1,15 @@
 import { Request, Response } from 'express';
 import { OrderServices } from './order.service';
 import config from '../../config';
+import orderValidationSchema from './order.validation';
 
 const createOrder = async (req: Request, res: Response): Promise<void> => {
   try {
     const orderData = req.body.order;
 
-    const result = await OrderServices.createOrderIntoDB(orderData);
+    const zodParsedData = orderValidationSchema.parse(orderData)
+
+    const result = await OrderServices.createOrderIntoDB(zodParsedData);
 
     // success response
     res.status(201).json({

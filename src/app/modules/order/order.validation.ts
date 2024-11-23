@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 import { z } from 'zod';
 
+const objectIdValidation = z.custom<mongoose.Types.ObjectId>((value) => {
+  return mongoose.Types.ObjectId.isValid(value)
+}, { message: "Invalid ObjectId" })
+
 const orderValidationSchema = z.object({
   email: z
     .string()
     .trim()
     .min(1, 'Email is required')
     .email({ message: 'Invalid email type' }),
-  product: z
-    .string()
-    .refine((value) => mongoose.Types.ObjectId.isValid(value), {
-      message: 'Invalid product ID',
-    }),
+  product: objectIdValidation,
   quantity: z
     .number()
     .positive('Quantity must be a positive number')
