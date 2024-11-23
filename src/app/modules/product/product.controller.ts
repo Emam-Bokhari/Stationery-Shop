@@ -53,7 +53,7 @@ const getAllProducts = async (req: Request, res: Response): Promise<void> => {
     );
 
     // not found error response
-    if (!result) {
+    if (!result || result.length === 0) {
       res.status(404).json({
         message: "Product not found",
         status: false,
