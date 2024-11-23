@@ -138,7 +138,7 @@ const updateProduct = async (req: Request, res: Response): Promise<void> => {
       status: true,
       data: result,
     });
-  } catch (err) {
+  } catch (err: any) {
     // general error response
     res.status(500).json({
       message: err.message || 'Internal server error',
@@ -169,9 +169,9 @@ const deleteProduct = async (req: Request, res: Response): Promise<void> => {
     res.status(200).json({
       message: 'Product deleted successfully',
       status: true,
-      data: result,
+      data: {},
     });
-  } catch (err) {
+  } catch (err: any) {
     res.status(500).json({
       message: err.message || 'Internal server error',
       status: false,
