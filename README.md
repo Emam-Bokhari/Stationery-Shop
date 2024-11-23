@@ -12,7 +12,7 @@ Welcome to the **Stationery Shop** repository! This document provides an overvie
    - [Folder Structure](#folder-structure)
    - [Application Architecture](#application-architecture)
 4. [Features](#features)
-5. [Modules Overview](#modules-overview)
+5. [API Modules Overview](#api-modules-overview)
 6. [Database Details](#database-details)
 7. [Development Standards](#development-standards)
 8. [Contact](#contact)
@@ -59,7 +59,7 @@ npm install
 3. **Start the server:**
 
 ```bash
-npm run dev
+npm run start:dev
 ```
 
 ### Environment Variables
@@ -154,9 +154,9 @@ Each module is feature-specific, containing:
 
 ---
 
-## Modules Overview
+## API Modules Overview
 
-### Product Module
+### Product API Module
 
 - **Description:** Handle product related operations
 
@@ -167,7 +167,7 @@ Each module is feature-specific, containing:
   - `PUT /api/products/:productId`
   - `DELETE /api/products/:productId`
 
-### Order Module
+### Order API Module
 
 - **Description:** Order related operations
 
@@ -176,3 +176,33 @@ Each module is feature-specific, containing:
   - `GET /api/orders/revenue`
 
 ---
+
+## Database Details
+
+**MongoDB Collections:**
+
+1. **products:** Stroe products data.
+
+2. **orders:** Store orders data
+
+---
+
+## Development Standards
+
+### Linting & Formatting
+
+- **ESLint:** Enforces coding standards.
+
+- **Prettier:** Ensures consistent formatting.
+
+```bash
+npm run lint
+npm run format
+```
+
+### Commit Message
+
+- `feat`: Introduces new features..
+- `fix`: Resolves bugs.
+- `config`: Updates configurations or settings.
+- `docs`: Updates or adds documentation.
