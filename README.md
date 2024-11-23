@@ -44,12 +44,12 @@ This project is a **stationery shop e-commerce site** built using **Node.js**, *
 
 1. **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/Emam-Bokhari/Stationery-Shop.git
+```bash
+git clone https://github.com/Emam-Bokhari/Stationery-Shop.git
 
-   cd Stationery-Shop
+cd Stationery-Shop
 
-   ```
+```
 
 2. **Install dependencies:**
 
@@ -75,7 +75,7 @@ DATABASE_URL=mongodb+srv://stationery-shop:k9CEPeB3t3soFJRb@cluster0.kndeci6.mon
 
 ---
 
-## 3. Architecture Overview
+## Architecture Overview
 
 ### Folder Structure
 
@@ -132,3 +132,23 @@ Each module is feature-specific, containing:
 6. **Validation:** Uses `Zod` for validating user input to ensure data integrity.
 
 ---
+
+## Features
+
+1. **Product Management:**
+
+   - **Add Product:** Ability to add new products to the inventory.
+
+   - **Update Product:** Edit product details such as name, price, description, and stock.
+
+   - **Delete Product:** Remove products from the inventory.
+
+   - **Find All Products:** Retrieve a list of all products.
+
+   - **Find Product by ID:** Retrieve product details by its unique identifier.
+
+2. **Order Management:**
+
+   - **Create Order**: Customers can place orders for products.
+
+   - **Calculate Revenue:** The system automatically calculates the total revenue generated from orders.
