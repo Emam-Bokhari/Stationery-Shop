@@ -15,15 +15,17 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
       data: result,
     });
   } catch (err: any) {
-    // conditional error response
-    if (
-      err.message === 'Product not found' ||
-      err.message === 'Insufficient stock available'
-    ) {
+    // product not found error response
+    if (err.message === "Product not found") {
+      res.status(404).json({
+        message: err.message,
+        status: false,
+      })
+    } else if (err.message === "Insufficient stock available") {
       res.status(400).json({
         message: err.message,
         status: false,
-      });
+      })
     } else {
       // general error response
       res.status(500).json({
@@ -39,6 +41,16 @@ const createOrder = async (req: Request, res: Response): Promise<void> => {
 const calculateRevenue = async (req: Request, res: Response): Promise<void> => {
   try {
     const result = await OrderServices.calculateRevenueFromDB();
+
+    // no data found error response
+    if (!result) {
+      res.status(404).json({
+        message: "No revenue data found",
+        status: false,
+        data: null
+      })
+      return;
+    }
 
     // success response
     res.status(200).json({
