@@ -47,7 +47,7 @@ const calculateRevenue = async (req: Request, res: Response): Promise<void> => {
     const result = await OrderServices.calculateRevenueFromDB();
 
     // no data found error response
-    if (!result) {
+    if (!result || typeof (result) === "object" && Object.keys(result.length === 0)) {
       res.status(404).json({
         message: "No revenue data found",
         status: false,
