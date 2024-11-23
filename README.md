@@ -15,8 +15,7 @@ Welcome to the **Stationery Shop** repository! This document provides an overvie
 5. [Modules Overview](#modules-overview)
 6. [Database Details](#database-details)
 7. [Development Standards](#development-standards)
-8. [Deployment](#deployment)
-9. [Contact](#contact)
+8. [Contact](#contact)
 
 ---
 
@@ -152,3 +151,28 @@ Each module is feature-specific, containing:
    - **Create Order**: Customers can place orders for products.
 
    - **Calculate Revenue:** The system automatically calculates the total revenue generated from orders.
+
+---
+
+## Modules Overview
+
+### Product Module
+
+- **Description:** Handle product related operations
+
+- **Endpoints:**
+  - `GET /api/products`
+  - `GET /api/products/:productId`
+  - `POST /api/products`
+  - `PUT /api/products/:productId`
+  - `DELETE /api/products/:productId`
+
+### Order Module
+
+- **Description:** Order related operations
+
+- **Endpoints:**
+  - `POST /api/orders`
+  - `GET /api/orders/revenue`
+
+---
