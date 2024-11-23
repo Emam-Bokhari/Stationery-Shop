@@ -10,7 +10,7 @@ Welcome to the **Stationery Shop** repository! This document provides an overvie
    - [Environment Variables](#environment-variables)
 3. [Architecture Overview](#architecture-overview)
    - [Folder Structure](#folder-structure)
-   - [System Design](#system-design)
+   - [Application Architecture](#application-architecture)
 4. [Features](#features)
 5. [Modules Overview](#modules-overview)
 6. [Database Details](#database-details)
@@ -115,14 +115,20 @@ DATABASE_URL=mongodb+srv://stationery-shop:k9CEPeB3t3soFJRb@cluster0.kndeci6.mon
 └── .vercel.json
 ```
 
-### System Design
+### Application Architecture:
 
 Each module is feature-specific, containing:
 
-1. **Controllers:** Route handlers for each feature.
+1. **Controller:** Responsible for handling incoming requests (`req`) and sending appropriate responses (`res`).
 
-2. **Routes:** Endpoints grouped by feature.
+2. **Interface:** Defines types and interfaces using `TypeScript` for strong type-checking.
 
-3. **Services:** Business logic.
+3. **Model:** Creates and manages `Mongoose models` for MongoDB collections.
 
-4. **Validations:** Input validation using libraries Zod .
+4. **Service:** Contains the business `logic` for the application.
+
+5. **Route:** Defines endpoints grouped by feature modules.
+
+6. **Validation:** Uses `Zod` for validating user input to ensure data integrity.
+
+---
