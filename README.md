@@ -21,7 +21,11 @@ Welcome to the **Stationery Shop** repository! This document provides an overvie
 
 ## Introduction
 
-This project is a **stationery shop e-commerce site** built using **Node.js**, **Express.js**, **Mongoose**, and **TypeScript** following a **modular monolithic architecture**.
+This project is a **backend/server-side application** for a **stationery shop e-commerce site** built using **Node.js**, **Express.js**, **Mongoose**, and **TypeScript** following a **modular monolithic architecture**.
+
+### Live Deployment
+
+[Visit the Live Site](https://stationery-shop-weld.vercel.app/)
 
 ### Key Features:
 
