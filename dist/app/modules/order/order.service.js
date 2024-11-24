@@ -60,7 +60,7 @@ const calculateRevenueFromDB = () => __awaiter(void 0, void 0, void 0, function*
             },
         },
     ]);
-    return revenueData;
+    return revenueData[0];
 });
 exports.OrderServices = {
     createOrderIntoDB,

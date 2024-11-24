@@ -58,8 +58,7 @@ const calculateRevenue = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const result = yield order_service_1.OrderServices.calculateRevenueFromDB();
         // no data found error response
-        if (!result ||
-            (typeof result === 'object' && Object.keys(result.length === 0))) {
+        if (!result) {
             res.status(404).json({
                 message: 'No revenue data found',
                 status: false,
