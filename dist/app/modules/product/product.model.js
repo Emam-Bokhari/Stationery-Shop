@@ -53,16 +53,21 @@ productSchema.pre('findOne', function (next) {
     next();
 });
 productSchema.pre('find', function (next) {
-    this.select('-isDeleted');
+    this.select('-isDeleted -__v');
     next();
 });
 productSchema.pre('findOne', function (next) {
-    this.select('-isDeleted');
+    this.select('-isDeleted -__v');
+    next();
+});
+productSchema.pre("findOneAndUpdate", function (next) {
+    this.select('-__v');
     next();
 });
 // aggregate middleware
-productSchema.pre('aggregate', function () {
+productSchema.pre('aggregate', function (next) {
     this.pipeline().unshift({ $match: { isDeleted: { $ne: true } } });
+    next();
 });
 productSchema.pre('aggregate', function (next) {
     this.pipeline().unshift({ $project: { isDeleted: 0 } });

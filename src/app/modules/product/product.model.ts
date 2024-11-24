@@ -54,14 +54,19 @@ productSchema.pre('findOne', function (next) {
 });
 
 productSchema.pre('find', function (next) {
-  this.select('-isDeleted');
+  this.select('-isDeleted -__v');
   next();
 });
 
 productSchema.pre('findOne', function (next) {
-  this.select('-isDeleted');
+  this.select('-isDeleted -__v');
   next();
 });
+
+productSchema.pre("findOneAndUpdate", function (next) {
+  this.select('-__v')
+  next()
+})
 
 // aggregate middleware
 productSchema.pre('aggregate', function (next) {
