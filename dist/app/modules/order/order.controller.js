@@ -18,7 +18,7 @@ const config_1 = __importDefault(require("../../config"));
 const order_validation_1 = __importDefault(require("./order.validation"));
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const orderData = req.body.order;
+        const orderData = req.body;
         // data validation by Zod
         const zodParsedData = order_validation_1.default.parse(orderData);
         const result = yield order_service_1.OrderServices.createOrderIntoDB(zodParsedData);

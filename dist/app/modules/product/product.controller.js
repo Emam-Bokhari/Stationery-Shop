@@ -19,7 +19,7 @@ const config_1 = __importDefault(require("../../config"));
 const zod_1 = require("zod");
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const productData = req.body.product;
+        const productData = req.body;
         // data validation by Zod
         const zodParsedData = product_validation_1.default.parse(productData);
         const result = yield product_service_1.ProductServices.createProductIntoDB(zodParsedData);
