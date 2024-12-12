@@ -9,12 +9,12 @@ const createProductIntoDB = async (productData: TProduct) => {
 const getAllProductsFromDB = async (searchTerm?: string) => {
   const filter = searchTerm
     ? {
-        $or: [
-          { name: { $regex: searchTerm, $options: 'i' } },
-          { brand: { $regex: searchTerm, $options: 'i' } },
-          { category: { $regex: searchTerm, $options: 'i' } },
-        ],
-      }
+      $or: [
+        { name: { $regex: searchTerm, $options: 'i' } },
+        { brand: { $regex: searchTerm, $options: 'i' } },
+        { category: { $regex: searchTerm, $options: 'i' } },
+      ],
+    }
     : {};
 
   const result = await Product.find(filter);
@@ -26,7 +26,7 @@ const getSingleProductFromDB = async (productId: string) => {
   return result;
 };
 
-const updateProductInDB = async (productId: string, updatedData: TProduct) => {
+const updateProductInDB = async (productId: string, updatedData: Partial<TProduct>) => {
   const result = await Product.findByIdAndUpdate(productId, updatedData, {
     new: true,
   });

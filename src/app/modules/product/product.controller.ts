@@ -6,7 +6,7 @@ import { ZodError } from 'zod';
 
 const createProduct = async (req: Request, res: Response): Promise<void> => {
   try {
-    const productData = req.body.product;
+    const productData = req.body;
 
     // data validation by Zod
     const zodParsedData = ProductValidationSchema.parse(productData);
